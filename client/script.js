@@ -1,5 +1,5 @@
-import bot from './assets/bot.svg';
-import user from './assets/user.svg';
+import bot from './assets/bot.svg'
+import user from './assets/user.svg'
 
 const form = document.querySelector('form')
 const chatContainer = document.querySelector('#chat_container')
@@ -86,32 +86,30 @@ const handleSubmit = async (e) => {
     // messageDiv.innerHTML = "..."
     loader(messageDiv)
 
-    // fetch data from server -> bots response
-
-    const response = await fetch('https://codi.onrender.com', {
+    //https://codi.onrender.com/
+    const response = await fetch('https://codi.onrender.com/', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify({
             prompt: data.get('prompt')
         })
     })
 
-    clearInterval(loadInterval);
-    messageDiv.innerHTML = '';
-    
-    if(response.ok) {
-        const data = await response.json();
-        const parsedData = data.bot.trim();
+    clearInterval(loadInterval)
+    messageDiv.innerHTML = " "
 
-        typeText(messageDiv, parsedData);
+    if (response.ok) {
+        const data = await response.json();
+        const parsedData = data.bot.trim() // trims any trailing spaces/'\n' 
+
+        typeText(messageDiv, parsedData)
     } else {
-        const err = await response.text();
+        const err = await response.text()
 
         messageDiv.innerHTML = "Something went wrong"
-
-        alert(err);
+        alert(err)
     }
 }
 
