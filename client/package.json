@@ -10,5 +10,9 @@
   },
   "devDependencies": {
     "vite": "^4.0.0"
+  },
+  "dependencies": {
+    "@react-oauth/google": "^0.5.1",
+    "jwt-decode": "^3.1.2"
   }
 }
